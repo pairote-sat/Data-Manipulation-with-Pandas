@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Introduction-To-Pandas.ipynb
+- file: Reading-Data-Using-Pandas.ipynb
+- file: Basic-Attributes-and-Methods.ipynb
+- file: Exercise-1.ipynb
+- file: Solutions-Exercise-1.ipynb
+- file: Row-and-Column-Selection.ipynb
+- file: Exercise-2.ipynb
+- file: Creating-or-Removing-Columns-from-DataFrame.ipynb
+- file: Exercise-3.ipynb
