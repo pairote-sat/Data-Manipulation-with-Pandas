@@ -13,3 +13,5 @@ chapters:
 - file: Exercise-2.ipynb
 - file: Creating-or-Removing-Columns-from-DataFrame.ipynb
 - file: Exercise-3.ipynb
+- file: Data-Reshaping-with-Pandas.ipynb
+- file: Chapter2_1-Python.ipynb
