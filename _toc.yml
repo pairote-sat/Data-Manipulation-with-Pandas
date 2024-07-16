@@ -14,4 +14,7 @@ chapters:
 - file: Creating-or-Removing-Columns-from-DataFrame.ipynb
 - file: Exercise-3.ipynb
 - file: Data-Reshaping-with-Pandas.ipynb
-- file: Chapter2_1-Python.ipynb
+- file: Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
+- file: Rose_Curve.ipynb
+- file: SRW.ipynb
+- file: Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
