@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Predictive Analytics: Linear Regression &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Predictive-Analytics-Linear-Regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Exercise: Diagnostic Analytics, Monte Carlo Simulation and sampling methods" href="Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Data Manipulation with Pandas
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction-To-Pandas.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reading-Data-Using-Pandas.html">Reading Data using Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Basic-Attributes-and-Methods.html">Basic Attributes and Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercise-1.html">Exercise 1: Basic Attributes and Methods using gapminder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Solutions-Exercise-1.html">Solutions for Exercise 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Row-and-Column-Selection.html">Slicing and Selecting in DataFrames in Pandas”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercise-2.html">Exercise 2: Slicing and Selecting in DataFrames in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-or-Removing-Columns-from-DataFrame.html">Creating or Removing Columns from DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercise-3.html">Exercise 3: Creating or Removing Columns from DataFrame in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data-Reshaping-with-Pandas.html">Data Reshaping with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Diagnostic-Analytics-Monte-Carlo-Simulation.html"><span style="color: dimgray;"><strong>Diagnostic Analytics: Monte Carlo Simulation</strong></span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rose_Curve.html">Introduction to Monte Carlo Simulation for Estimating Area Inside Rose Petals</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="SRW.html">Simple Random Walk Definition</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.html">Exercise: Diagnostic Analytics, Monte Carlo Simulation and sampling methods</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Predictive Analytics: Linear Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPredictive-Analytics-Linear-Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Predictive-Analytics-Linear-Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predictive Analytics: Linear Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-csv-to-dataframe-in-google-colab">How to Read CSV to DataFrame in Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression">Introduction to Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-linear-regression-works">How Linear Regression Works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-linear-regression">Example of Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-linear-regression">Importance of Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-height-weight-dataset">Data Preprocessing (height-weight dataset)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-relationships-between-variables-using-pairplot">Visualize Relationships Between Variables Using Pairplot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-pairplot-for-height-and-weight">Interpreting the Pairplot for Height and Weight</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-each-variable">Correlation Between Each Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-dataset-into-training-and-testing-sets">Splitting the Dataset into Training and Testing Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-linear-model">Build a Linear Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">Evaluate the Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-the-target-variable">1. Predict the Target Variable</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-performance-metrics">2. Calculate Performance Metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-predicted-values-with-actual-values">3. Compare Predicted Values with Actual Values</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-model-performance-on-test-data">Visualize Model Performance on Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction-from-the-model-result">Make a Prediction from the Model Result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="predictive-analytics-linear-regression">
+<h1>Predictive Analytics: Linear Regression<a class="headerlink" href="#predictive-analytics-linear-regression" title="Link to this heading">#</a></h1>
+<section id="how-to-read-csv-to-dataframe-in-google-colab">
+<h2>How to Read CSV to DataFrame in Google Colab<a class="headerlink" href="#how-to-read-csv-to-dataframe-in-google-colab" title="Link to this heading">#</a></h2>
+<p>To read a CSV file into a Pandas DataFrame in Google Colab, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Open Google Colab and Create a New Notebook</strong></p>
+<ul class="simple">
+<li><p>Go to <a class="reference external" href="https://colab.research.google.com/">Google Colab</a> and create a new notebook.</p></li>
+</ul>
+</li>
+<li><p><strong>Upload the CSV File to Your Google Drive</strong></p>
+<ul class="simple">
+<li><p>Make sure the CSV file you want to read is uploaded to your Google Drive.</p></li>
+</ul>
+</li>
+<li><p><strong>Mount Your Google Drive in Colab</strong></p>
+<ul>
+<li><p>Run the following code to mount your Google Drive:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>This will prompt you to authorize Colab to access your Google Drive. Follow the instructions and enter the authorization code.</p></li>
+</ul>
+</li>
+<li><p><strong>Navigate to the CSV File</strong></p>
+<ul class="simple">
+<li><p>Use the file explorer on the left panel of the Colab notebook to find the path to your CSV file.</p></li>
+</ul>
+</li>
+<li><p><strong>Load the CSV File into a Pandas DataFrame</strong></p>
+<ul>
+<li><p>Run the following code to load the CSV file into a Pandas DataFrame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/My Drive/path/to/your/csv/iris.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">/content/drive/My</span> <span class="pre">Drive/path/to/your/csv/iris.csv</span></code> with the actual path to your CSV file in Google Drive.</p></li>
+</ul>
+</li>
+</ol>
+<p>By following these steps, you can easily read a CSV file from your Google Drive into a Pandas DataFrame in Google Colab.</p>
+</section>
+<section id="linear-regression">
+<h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h2>
+<section id="introduction-to-linear-regression">
+<h3>Introduction to Linear Regression<a class="headerlink" href="#introduction-to-linear-regression" title="Link to this heading">#</a></h3>
+<p>Linear regression is a statistical method used to model the relationship between two variables by fitting a linear equation to the observed data. The goal is to find the best-fitting straight line through the points.</p>
+<p>For a simple linear regression, we are interested in finding the relationship between a dependent variable <span class="math notranslate nohighlight">\( Y \)</span> and an independent variable <span class="math notranslate nohighlight">\( x \)</span>. The linear equation can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = ax + b
+\]</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( Y \)</span> is the dependent variable we are trying to predict.</p></li>
+<li><p><span class="math notranslate nohighlight">\( x \)</span> is the independent variable we are using to make predictions.</p></li>
+<li><p><span class="math notranslate nohighlight">\( a \)</span> is the slope of the line, which represents the change in <span class="math notranslate nohighlight">\( Y \)</span> for a one-unit change in <span class="math notranslate nohighlight">\( x \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( b \)</span> is the y-intercept, which is the value of <span class="math notranslate nohighlight">\( Y \)</span> when <span class="math notranslate nohighlight">\( x \)</span> is zero.</p></li>
+</ul>
+</section>
+<section id="how-linear-regression-works">
+<h3>How Linear Regression Works<a class="headerlink" href="#how-linear-regression-works" title="Link to this heading">#</a></h3>
+<p>The main idea behind linear regression is to find the line that best fits the data points. This is done by minimizing the sum of the squared differences between the observed values and the values predicted by the line. This method is known as “least squares.”</p>
+</section>
+<section id="example-of-linear-regression">
+<h3>Example of Linear Regression<a class="headerlink" href="#example-of-linear-regression" title="Link to this heading">#</a></h3>
+<p>Let’s consider a simple example. Suppose we have data on the number of hours studied (<span class="math notranslate nohighlight">\( x \)</span>) and the corresponding test scores (<span class="math notranslate nohighlight">\( Y \)</span>). Our goal is to find the relationship between the hours studied and the test scores.</p>
+<ol class="arabic simple">
+<li><p>Plot the data points on a graph with hours studied on the x-axis and test scores on the y-axis.</p></li>
+<li><p>Draw the best-fitting line through the points.</p></li>
+<li><p>Use the equation of the line to make predictions.</p></li>
+</ol>
+<p>For example, if the equation of our best-fitting line is:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = 5x + 10
+\]</div>
+<p>This means that for every additional hour studied, the test score increases by 5 points, and the y-intercept is 10.</p>
+</section>
+<section id="importance-of-linear-regression">
+<h3>Importance of Linear Regression<a class="headerlink" href="#importance-of-linear-regression" title="Link to this heading">#</a></h3>
+<p>Linear regression is a fundamental technique in statistics and machine learning. It is widely used for predicting outcomes and understanding relationships between variables. In many real-world situations, it provides a simple yet powerful way to make informed decisions based on data.</p>
+<p>By learning linear regression, students can gain valuable insights into data analysis and develop critical thinking skills that are applicable in various fields, from economics to engineering.</p>
+<div class="admonition-example-predict-the-height-or-weight-of-a-person admonition">
+<p class="admonition-title"><strong>Example: Predict the Height or Weight of a Person</strong></p>
+<p>In this section, we will use a simple dataset from Kaggle, specifically the Weights and Heights dataset, to apply a linear regression algorithm. The dataset includes the following variables:</p>
+<ul class="simple">
+<li><p><strong>Gender</strong></p></li>
+<li><p><strong>Height (m)</strong></p></li>
+<li><p><strong>Weight (kg)</strong></p></li>
+</ul>
+<h4 class="rubric" id="about-the-dataset">About the Dataset</h4>
+<p>The dataset provides information about individuals’ heights and weights. We will use this data to build a linear regression model to predict either height or weight based on the other variable.</p>
+<h5 class="rubric" id="tasks-for-building-and-evaluating-a-linear-regression-model">Tasks for Building and Evaluating a Linear Regression Model</h5>
+<ol class="arabic simple">
+<li><p><strong>Load the Dataset</strong></p>
+<ul class="simple">
+<li><p>Import the dataset containing individuals’ heights and weights.</p></li>
+<li><p>Display the first few rows to understand the structure of the data.</p></li>
+</ul>
+</li>
+<li><p><strong>Explore the Data</strong></p>
+<ul class="simple">
+<li><p>Check for missing values and handle them appropriately.</p></li>
+<li><p>Perform basic statistical analysis (mean, median, standard deviation) on the height and weight variables.</p></li>
+<li><p>Visualize the distribution of heights and weights using histograms.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualize Relationships</strong></p>
+<ul class="simple">
+<li><p>Create scatter plots to visualize the relationship between height and weight.</p></li>
+<li><p>Fit a linear regression line to the scatter plot to observe the trend.</p></li>
+</ul>
+</li>
+<li><p><strong>Prepare the Data</strong></p>
+<ul class="simple">
+<li><p>Split the dataset into features (X) and target (y).</p></li>
+<li><p>Perform a train-test split to evaluate the model’s performance on unseen data.</p></li>
+</ul>
+</li>
+<li><p><strong>Train the Model</strong></p>
+<ul class="simple">
+<li><p>Initialize a linear regression model.</p></li>
+<li><p>Train the model using the training data.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluate the Model</strong></p>
+<ul class="simple">
+<li><p>Predict the target variable (height or weight) on the test set.</p></li>
+<li><p>Calculate and display performance metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), and R-squared.</p></li>
+<li><p>Compare the predicted values with actual values using a scatter plot or residual plot.</p></li>
+</ul>
+</li>
+<li><p><strong>Make Predictions</strong></p>
+<ul class="simple">
+<li><p>Use the trained model to predict height or weight for new data points.</p></li>
+<li><p>Display and interpret the predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Review Model Performance</strong></p>
+<ul class="simple">
+<li><p>Assess the model coefficients (slope and intercept) and interpret their meaning.</p></li>
+<li><p>Check for overfitting or underfitting based on performance metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Document and Report</strong></p>
+<ul class="simple">
+<li><p>Summarize the findings and insights from the model.</p></li>
+<li><p>Create a report detailing the analysis, model performance, and predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Optional: Improve the Model</strong></p>
+<ul class="simple">
+<li><p>Explore feature engineering or data transformation techniques to improve model performance.</p></li>
+<li><p>Consider alternative regression techniques if needed.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</section>
+<section id="data-preprocessing-height-weight-dataset">
+<h3>Data Preprocessing (height-weight dataset)<a class="headerlink" href="#data-preprocessing-height-weight-dataset" title="Link to this heading">#</a></h3>
+<p>First, we need to preprocess the data before applying the linear regression model. This includes loading the data, handling missing values, and encoding categorical variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/shashankvmaiya/Height-Weight-Gender-Classification/master/data/01_heights_weights_genders.csv&quot;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize-relationships-between-variables-using-pairplot">
+<h3>Visualize Relationships Between Variables Using Pairplot<a class="headerlink" href="#visualize-relationships-between-variables-using-pairplot" title="Link to this heading">#</a></h3>
+<p>To understand the relationships between variables, we can use Seaborn’s <code class="docutils literal notranslate"><span class="pre">pairplot</span></code> function. This function creates a matrix of scatter plots for each pair of variables in the DataFrame, allowing us to visually inspect correlations and patterns.</p>
+<p>Here’s how you can use <code class="docutils literal notranslate"><span class="pre">pairplot</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Plot pairplot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
+</pre></div>
+</div>
+<img alt="_images/7d9df1496e2a872124def07877255f6313059df78ae4c303318403979085fc4d.png" src="_images/7d9df1496e2a872124def07877255f6313059df78ae4c303318403979085fc4d.png" />
+</div>
+</div>
+</section>
+<section id="interpreting-the-pairplot-for-height-and-weight">
+<h3>Interpreting the Pairplot for Height and Weight<a class="headerlink" href="#interpreting-the-pairplot-for-height-and-weight" title="Link to this heading">#</a></h3>
+<p>When you visualize the relationship between height and weight using a pairplot, you get a matrix of scatter plots and histograms that help you understand the relationships between these variables.</p>
+<p>Here’s how to interpret the results:</p>
+<ol class="arabic simple">
+<li><p><strong>Scatter Plot</strong>:</p>
+<ul class="simple">
+<li><p>The scatter plot in the pairplot shows the relationship between height and weight. Each point represents an individual’s height and corresponding weight.</p></li>
+<li><p><strong>Positive Correlation</strong>: If the points tend to form an upward trend from left to right, this indicates a positive correlation, meaning as height increases, weight also tends to increase.</p></li>
+<li><p><strong>No Clear Pattern</strong>: If the points are scattered randomly with no discernible trend, there may be no significant correlation between height and weight.</p></li>
+</ul>
+</li>
+<li><p><strong>Histogram</strong>:</p>
+<ul class="simple">
+<li><p>The diagonal of the pairplot contains histograms for each variable (height and weight). These histograms show the distribution of individual variables.</p></li>
+<li><p><strong>Height Histogram</strong>: This histogram displays how frequently different heights occur in the dataset.</p></li>
+<li><p><strong>Weight Histogram</strong>: Similarly, this histogram shows the distribution of weights in the dataset.</p></li>
+</ul>
+</li>
+<li><p><strong>Correlation Strength</strong>:</p>
+<ul class="simple">
+<li><p>You can get a sense of the strength of the correlation by observing how tightly the points cluster around an imaginary line in the scatter plot.</p></li>
+<li><p><strong>Strong Correlation</strong>: Points closely follow a straight line.</p></li>
+<li><p><strong>Weak Correlation</strong>: Points are more dispersed and less aligned.</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Correlation measures how two variables are related to each other. In simple terms, if one variable changes, correlation helps us understand how and whether another variable changes in response. For example, if we find a positive correlation between height and weight, it means that as people’s height increases, their weight tends to increase as well. Correlation can be positive (both variables move in the same direction), negative (one variable increases while the other decreases), or zero (no clear relationship). It’s a useful tool for identifying relationships and patterns between different sets of data.</p>
+</div>
+<p>For a dataset with height and weight:</p>
+<ul class="simple">
+<li><p>If you observe that as height increases, weight also generally increases, you might conclude there is a positive correlation between height and weight.</p></li>
+<li><p>If the scatter plot shows a scattered distribution with no clear pattern, the relationship between height and weight may not be strong or linear.</p></li>
+</ul>
+<p>By using a pairplot, you can visually assess the relationships and decide whether further statistical analysis is needed to quantify the correlation.</p>
+</section>
+<section id="correlation-between-each-variable">
+<h3>Correlation Between Each Variable<a class="headerlink" href="#correlation-between-each-variable" title="Link to this heading">#</a></h3>
+<p>We need to check the correlation between variables to understand their relationships. This helps us identify which variable can predict another.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If &#39;Gender&#39; is not needed for correlation, select only numerical columns</span>
+<span class="n">df_numerical</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Calculate the correlation matrix</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df_numerical</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Height    Weight
+Height  1.000000  0.924756
+Weight  0.924756  1.000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the given correlation matrix, the correlation coefficient between Height and Weight is 0.925, which indicates a very strong positive linear relationship between these two variables. This value close to 1 suggests that as Height increases, Weight tends to increase as well, and vice versa. The diagonal elements of the matrix are 1, which represent the perfect correlation of each variable with itself.</p>
+</div>
+</section>
+<section id="splitting-the-dataset-into-training-and-testing-sets">
+<h3>Splitting the Dataset into Training and Testing Sets<a class="headerlink" href="#splitting-the-dataset-into-training-and-testing-sets" title="Link to this heading">#</a></h3>
+<p>To evaluate our model, we need to split the dataset into training and testing sets. This allows us to train the model on one part of the data and test it on another.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Define features and target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Height&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+
+<span class="c1"># Split the dataset</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-a-linear-model">
+<h3>Build a Linear Model<a class="headerlink" href="#build-a-linear-model" title="Link to this heading">#</a></h3>
+<p>Now we will build a linear regression model using the training data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Initialize the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Print the model coefficients</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slope (a): </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Intercept (b): </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slope (a): 7.70218560509581
+Intercept (b): -349.7878205824454
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluate-the-model">
+<h3>Evaluate the Model<a class="headerlink" href="#evaluate-the-model" title="Link to this heading">#</a></h3>
+<p>After building and training your linear regression model, it’s important to evaluate its performance. This involves predicting the target variable on the test set and calculating various performance metrics. Here’s how you can do it:</p>
+<section id="predict-the-target-variable">
+<h4>1. Predict the Target Variable<a class="headerlink" href="#predict-the-target-variable" title="Link to this heading">#</a></h4>
+<p>Use your trained model to make predictions on the test set. For example, if you are predicting weight based on height, you would use the test set heights to predict weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict the target variable on the test set</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-performance-metrics">
+<h4>2. Calculate Performance Metrics<a class="headerlink" href="#calculate-performance-metrics" title="Link to this heading">#</a></h4>
+<p>Calculate and display the following performance metrics to assess how well your model is performing:</p>
+<ul class="simple">
+<li><p><strong>Mean Absolute Error (MAE)</strong>: Measures the average magnitude of errors in predictions, without considering their direction. It is calculated as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( y_i \)</span> is the actual value and <span class="math notranslate nohighlight">\( \hat{y}_i \)</span> is the predicted value.</p>
+<ul class="simple">
+<li><p><strong>Mean Squared Error (MSE)</strong>: Measures the average squared difference between the predicted and actual values. It gives more weight to larger errors. It is calculated as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( y_i \)</span> is the actual value and <span class="math notranslate nohighlight">\( \hat{y}_i \)</span> is the predicted value.</p>
+<ul class="simple">
+<li><p><strong>R-squared (R^2)</strong>: Represents the proportion of variance in the dependent variable that is predictable from the independent variable(s). It ranges from 0 to 1, where 1 indicates a perfect fit. It is calculated as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \bar{y} \)</span> is the mean of the actual values, <span class="math notranslate nohighlight">\( y_i \)</span> is the actual value, and <span class="math notranslate nohighlight">\( \hat{y}_i \)</span> is the predicted value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Calculate performance metrics</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Absolute Error (MAE): </span><span class="si">{</span><span class="n">mae</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Squared Error (MSE): </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R-squared (R^2): </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error (MAE): 9.69193380188457
+Mean Squared Error (MSE): 149.00350418448122
+R-squared (R^2): 0.85773177770385
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-predicted-values-with-actual-values">
+<h4>3. Compare Predicted Values with Actual Values<a class="headerlink" href="#compare-predicted-values-with-actual-values" title="Link to this heading">#</a></h4>
+<p>Visualize how well your model’s predictions match the actual values. This can be done using scatter plots or residual plots:</p>
+<ul class="simple">
+<li><p><strong>Scatter Plot</strong>: This plot displays predicted values against actual values. It helps you see how closely the predicted values align with the actual values. If the points closely follow a diagonal line, it indicates that the predictions are accurate.</p></li>
+<li><p><strong>Residual Plot</strong>: This plot shows the residuals, which are the differences between actual and predicted values. By plotting residuals against predicted values, you can check for patterns that might indicate problems with the model, such as non-linearity or heteroscedasticity. Ideally, residuals should be randomly scattered around zero with no clear pattern.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Scatter plot of predicted vs actual values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_test</span><span class="p">)],</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_test</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2dc0d67c1be2c4444457c7cc41d1d40c89ae8e54676b9acb3cce98d9a887c840.png" src="_images/2dc0d67c1be2c4444457c7cc41d1d40c89ae8e54676b9acb3cce98d9a887c840.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate residuals</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span>
+
+<span class="c1"># Residual plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residual Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f87de57fc38a3b741d5d62f9235536997b2f2257567161acd5aa85c18e94e253.png" src="_images/f87de57fc38a3b741d5d62f9235536997b2f2257567161acd5aa85c18e94e253.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="visualize-model-performance-on-test-data">
+<h3>Visualize Model Performance on Test Data<a class="headerlink" href="#visualize-model-performance-on-test-data" title="Link to this heading">#</a></h3>
+<p>To assess the performance of your linear regression model, it’s crucial to visualize the results using the test data. This helps us understand how well the model generalizes to new, unseen data.</p>
+<p>Here’s how to visualize the model’s predictions:</p>
+<ol class="arabic simple">
+<li><p><strong>Scatter Plot and Regression Line</strong>: Plotting the actual data points alongside the regression line helps us see how well the model fits the test data. The scatter plot shows the actual data, while the regression line indicates the model’s predictions.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regression line&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Weight (kg)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Height vs Weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b8c71222c4a61bcf7d8bab756b924bb3fa2efbf686c86680bc340efacb94843e.png" src="_images/b8c71222c4a61bcf7d8bab756b924bb3fa2efbf686c86680bc340efacb94843e.png" />
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Explanation</strong>:</p>
+<ul class="simple">
+<li><p><strong>Scatter Plot</strong>: This shows the actual test data points, with <code class="docutils literal notranslate"><span class="pre">Height</span></code> on the x-axis and <code class="docutils literal notranslate"><span class="pre">Weight</span></code> on the y-axis. Each blue dot represents an actual data point from the test set, allowing you to see the distribution and spread of the data.</p></li>
+<li><p><strong>Regression Line</strong>: The red line represents the model’s predictions. It is plotted using the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method of your trained linear regression model. This line indicates the trend that the model has learned from the training data and how it predicts <code class="docutils literal notranslate"><span class="pre">Weight</span></code> based on <code class="docutils literal notranslate"><span class="pre">Height</span></code>.</p></li>
+<li><p><strong>Axis Labels</strong>: Clearly label the x-axis as <code class="docutils literal notranslate"><span class="pre">Height</span> <span class="pre">(m)</span></code> and the y-axis as <code class="docutils literal notranslate"><span class="pre">Weight</span> <span class="pre">(kg)</span></code>. This helps in understanding what each axis represents in the plot.</p></li>
+<li><p><strong>Title</strong>: The plot is titled <code class="docutils literal notranslate"><span class="pre">Height</span> <span class="pre">vs</span> <span class="pre">Weight</span></code>, providing context to what the plot represents and making it easier to interpret the visualization.</p></li>
+</ul>
+</li>
+</ol>
+<p>By comparing the regression line with the actual data points, you can visually assess the fit of the model and determine how well it generalizes to the test data.</p>
+</section>
+<section id="make-a-prediction-from-the-model-result">
+<h3>Make a Prediction from the Model Result<a class="headerlink" href="#make-a-prediction-from-the-model-result" title="Link to this heading">#</a></h3>
+<p>Finally, we can use the trained model to make predictions. For example, we can predict the weight of a person given their height.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict the weight for a specific height</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span><span class="mi">80</span><span class="p">]})</span>  <span class="c1"># Ensure column name matches</span>
+<span class="n">predicted_weight</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted weight: </span><span class="si">{</span><span class="n">predicted_weight</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted weight: [227.8760998  266.38702783]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>In this regression analysis, we used linear regression to model the relationship between height and weight. By training the model on a training set and evaluating it on a test set, we were able to predict weight based on height. We assessed the model’s performance using metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), and R-squared (<span class="math notranslate nohighlight">\(R^2\)</span>), which provided insights into the accuracy and goodness of fit of the model.</p>
+<p>Visualizing the results with scatter plots and regression lines on the test data allowed us to assess how well the model generalizes to new data. The combination of statistical metrics and visual plots provides a comprehensive view of the model’s effectiveness and helps in understanding the strengths and limitations of the predictions. Overall, linear regression is a powerful tool for uncovering relationships between variables and making predictions based on these relationships.</p>
+<div class="admonition-exercise-linear-regression-analysis-swedish-insurance-dataset admonition">
+<p class="admonition-title"><strong>Exercise: Linear Regression Analysis: Swedish Insurance Dataset</strong></p>
+<p>You are provided with the “Auto Insurance in Sweden” dataset. This dataset contains two variables:</p>
+<ul class="simple">
+<li><p><strong>Total Number of Claims (x)</strong>: The number of claims made.</p></li>
+<li><p><strong>Total Payment for Claims (y)</strong>: The total payment for all claims, measured in thousands of Swedish Kronor.</p></li>
+</ul>
+<p>Your task is to perform linear regression analysis to predict the total payment for claims given the number of claims.</p>
+<p><strong>Tasks</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Estimate Statistical Quantities</strong></p>
+<ul class="simple">
+<li><p>Load the dataset and examine its structure.</p></li>
+<li><p>Calculate the mean and standard deviation of both the total number of claims and the total payment for claims.</p></li>
+<li><p>Provide summary statistics for the dataset.</p></li>
+</ul>
+</li>
+<li><p><strong>Estimate Linear Regression Coefficients</strong></p>
+<ul class="simple">
+<li><p>Fit a simple linear regression model to the dataset.</p></li>
+<li><p>Extract the estimated coefficients (slope and intercept) of the regression line.</p></li>
+<li><p>Interpret the meaning of the coefficients in the context of the problem.</p></li>
+</ul>
+</li>
+<li><p><strong>Make Predictions Using Linear Regression</strong></p>
+<ul class="simple">
+<li><p>Use the fitted regression model to make predictions for new values of the total number of claims.</p></li>
+<li><p>Create a plot showing the regression line along with the data points.</p></li>
+<li><p>Compare the predicted values to the actual total payment values and evaluate the model’s performance.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exercise: Diagnostic Analytics, Monte Carlo Simulation and sampling methods</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-read-csv-to-dataframe-in-google-colab">How to Read CSV to DataFrame in Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-linear-regression">Introduction to Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-linear-regression-works">How Linear Regression Works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-linear-regression">Example of Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-linear-regression">Importance of Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-height-weight-dataset">Data Preprocessing (height-weight dataset)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-relationships-between-variables-using-pairplot">Visualize Relationships Between Variables Using Pairplot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-pairplot-for-height-and-weight">Interpreting the Pairplot for Height and Weight</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-between-each-variable">Correlation Between Each Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-dataset-into-training-and-testing-sets">Splitting the Dataset into Training and Testing Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-linear-model">Build a Linear Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">Evaluate the Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-the-target-variable">1. Predict the Target Variable</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-performance-metrics">2. Calculate Performance Metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-predicted-values-with-actual-values">3. Compare Predicted Values with Actual Values</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-model-performance-on-test-data">Visualize Model Performance on Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction-from-the-model-result">Make a Prediction from the Model Result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
