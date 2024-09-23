@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic Attributes and Methods &#8212; My sample book</title>
+    <title>ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์ &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Basic-Attributes-and-Methods';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Introduction-to-Programming';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)" href="Programming-Procedure.html" />
+    <link rel="prev" title="บทนำสู่การเขียนโปรแกรมคอมพิวเตอร์" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -175,12 +175,14 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to Data Manipulation with Pandas
+                    บทนำสู่การเขียนโปรแกรมคอมพิวเตอร์
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Introduction-to-Programming.html">ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming-Procedure.html">การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)</a></li>
+
 </ul>
 
     </div>
@@ -252,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FBasic-Attributes-and-Methods.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FIntroduction-to-Programming.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +284,7 @@
       
       
       
-      <li><a href="_sources/Basic-Attributes-and-Methods.ipynb" target="_blank"
+      <li><a href="_sources/Introduction-to-Programming.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic Attributes and Methods</h1>
+    <h1>ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,7 +378,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">Code Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-language">Programming Language (ภาษาโปรแกรม)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler">Compiler (ตัวแปลภาษา)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreter">Interpreter (ตัวแปลภาษา)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler-vs-interpreter">Compiler vs Interpreter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compiler:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Interpreter:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler-interpreter">ข้อแตกต่างระหว่าง Compiler และ Interpreter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ตัวอย่างภาษา Compiler และ Interpreter</a></li>
 </ul>
             </nav>
         </div>
@@ -388,121 +399,141 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-attributes-and-methods">
-<h1>Basic Attributes and Methods<a class="headerlink" href="#basic-attributes-and-methods" title="Link to this heading">#</a></h1>
-<p>Pandas provides several attributes and methods that allow users to get a quick overview of the DataFrame, such as its shape, data types, and summary statistics.</p>
-<p><strong>Functions to be used</strong>:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">df.info()</span></code>: method used for getting information about number of rows, columns, count of not null, memory usage.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.shape</span></code>: attribute that returns a tuple representing the dimensionality of the DataFrame (rows, columns).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.columns</span></code>: attribute that returns the column labels of the DataFrame.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.head()</span></code>: method used to return the first n rows of the DataFrame.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.describe()</span></code>: method used to generate descriptive statistics that summarize the central tendency, dispersion, and shape of a dataset’s distribution, excluding NaN values.</p></li>
-</ol>
-<section id="code-example">
-<h2>Code Example:<a class="headerlink" href="#code-example" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># URL to the raw CSV file on GitHub</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/kirenz/datasets/master/gapminder.csv&#39;</span>
-
-<span class="c1"># Read the CSV file into a DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="c1"># 1. Get DataFrame information</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="programming-language">
+<h2>Programming Language (ภาษาโปรแกรม)<a class="headerlink" href="#programming-language" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Programming Language</strong> คือ ภาษาเฉพาะที่มนุษย์สร้างขึ้นเพื่อสื่อสารกับคอมพิวเตอร์</p></li>
+<li><p>โปรแกรมเมอร์ใช้ภาษาเหล่านี้ในการเขียนโปรแกรมสั่งงานคอมพิวเตอร์</p></li>
+<li><p>ภาษาโปรแกรมแบ่งได้เป็นหลายประเภท เช่น</p>
+<ul>
+<li><p><strong>Low-level Language</strong> (ภาษาเครื่อง หรือ Assembly)</p></li>
+<li><p><strong>High-level Language</strong> (ภาษาโปรแกรมระดับสูง เช่น Python, Java, C++)</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p>WHAT IS PROGRAMMING?</p>
+<p>Writing very specific instructions to a very dumb, yet obedient machine.</p>
+</div></blockquote>
+<figure class="align-default" id="figure-which-programming-language-should-i-learn-first-infographic">
+<img alt="_images/which-programming-language-should-i-learn-first-infographic.png" src="_images/which-programming-language-should-i-learn-first-infographic.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Programming Language</span><a class="headerlink" href="#figure-which-programming-language-should-i-learn-first-infographic" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image from <a class="reference external" href="https://carlcheo.com/startcoding">https://carlcheo.com/startcoding</a></p>
 </div>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="compiler">
+<h2>Compiler (ตัวแปลภาษา)<a class="headerlink" href="#compiler" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Compiler</strong> คือ โปรแกรมที่ทำหน้าที่แปลโปรแกรมภาษาโปรแกรม (Source Code) ให้เป็นภาษาเครื่อง (Machine Code) ที่คอมพิวเตอร์สามารถเข้าใจและดำเนินการได้</p></li>
+<li><p>การทำงานของ Compiler มีหลายขั้นตอน เช่น</p>
+<ul>
+<li><p>Lexical Analysis: ตรวจสอบคำหรือสัญลักษณ์ในโค้ด</p></li>
+<li><p>Syntax Analysis: ตรวจสอบโครงสร้างประโยคตามไวยากรณ์ของภาษา</p></li>
+<li><p>Code Generation: สร้างโค้ดภาษาเครื่อง</p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-default" id="figure-compiler">
+<img alt="_images/compiler.png" src="_images/compiler.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Compiler</span><a class="headerlink" href="#figure-compiler" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image from <a class="reference external" href="https://www.tamemo.com/post/141/?ref=content">https://www.tamemo.com/post/141/?ref=content</a></p>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 1704 entries, 0 to 1703
-Data columns (total 6 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   country    1704 non-null   object 
- 1   continent  1704 non-null   object 
- 2   year       1704 non-null   int64  
- 3   lifeExp    1704 non-null   float64
- 4   pop        1704 non-null   int64  
- 5   gdpPercap  1704 non-null   float64
-dtypes: float64(2), int64(2), object(2)
-memory usage: 80.0+ KB
-</pre></div>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="interpreter">
+<h2>Interpreter (ตัวแปลภาษา)<a class="headerlink" href="#interpreter" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Interpreter</strong> คือ โปรแกรมที่ทำหน้าที่แปลและรันโปรแกรมภาษาโปรแกรมทีละบรรทัดทันทีที่อ่านโค้ด</p></li>
+<li><p>การทำงานของ Interpreter แตกต่างจาก Compiler ตรงที่มันไม่แปลโค้ดทั้งหมดก่อนแล้วจึงรัน แต่แปลและรันโค้ดทีละบรรทัด</p></li>
+<li><p>ข้อดีของ Interpreter คือสามารถตรวจสอบและแก้ไขข้อผิดพลาดได้ทันที</p></li>
+<li><p>ตัวอย่างขั้นตอนการทำงานของ Interpreter:</p>
+<ul>
+<li><p>Lexical Analysis: ตรวจสอบคำหรือสัญลักษณ์ในแต่ละบรรทัดโค้ด</p></li>
+<li><p>Syntax Analysis: ตรวจสอบโครงสร้างไวยากรณ์เฉพาะบรรทัดนั้น</p></li>
+<li><p>Immediate Execution: รันคำสั่งทีละบรรทัด</p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-default" id="figure-interpreter">
+<img alt="_images/interpreter.png" src="_images/interpreter.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Compiler</span><a class="headerlink" href="#figure-interpreter" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image from <a class="reference external" href="https://www.tamemo.com/post/141/?ref=content">https://www.tamemo.com/post/141/?ref=content</a></p>
 </div>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="compiler-vs-interpreter">
+<h2>Compiler vs Interpreter<a class="headerlink" href="#compiler-vs-interpreter" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>Compiler:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>แปลโค้ดทั้งหมดก่อนดำเนินการ (Compile ครั้งเดียว)</p></li>
+<li><p>ผลลัพธ์เป็นไฟล์ภาษาเครื่อง (machine code file)</p></li>
+<li><p>ใช้เวลานานในขั้นตอนการ Compile แต่การทำงานเร็ว</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Interpreter:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>แปลโค้ดทีละบรรทัด และดำเนินการในทันที</p></li>
+<li><p>ไม่สร้างไฟล์ภาษาเครื่อง</p></li>
+<li><p>การแปลและการทำงานช้ากว่า Compiler แต่ปรับแก้โค้ดได้ง่ายกว่า</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="compiler-interpreter">
+<h2>ข้อแตกต่างระหว่าง Compiler และ Interpreter<a class="headerlink" href="#compiler-interpreter" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Compiler</p></th>
+<th class="head"><p>Interpreter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>การทำงาน</p></td>
+<td><p>แปลโค้ดทั้งหมด</p></td>
+<td><p>แปลทีละบรรทัด</p></td>
+</tr>
+<tr class="row-odd"><td><p>ผลลัพธ์</p></td>
+<td><p>ไฟล์ภาษาเครื่อง</p></td>
+<td><p>ไม่มีไฟล์ภาษาเครื่อง</p></td>
+</tr>
+<tr class="row-even"><td><p>ความเร็วการประมวลผล</p></td>
+<td><p>เร็วหลังจากการ Compile เสร็จ</p></td>
+<td><p>ช้ากว่าเนื่องจากแปลทีละบรรทัด</p></td>
+</tr>
+<tr class="row-odd"><td><p>การแก้ไขข้อผิดพลาด</p></td>
+<td><p>แก้ไขยาก ต้อง Compile ใหม่</p></td>
+<td><p>แก้ไขง่าย รันได้ทันที</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Get the shape of the DataFrame</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of DataFrame:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of DataFrame: (1704, 6)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3. Get the column labels of the DataFrame</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Columns in DataFrame:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columns in DataFrame: Index([&#39;country&#39;, &#39;continent&#39;, &#39;year&#39;, &#39;lifeExp&#39;, &#39;pop&#39;, &#39;gdpPercap&#39;], dtype=&#39;object&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4. Get the first 5 rows of the DataFrame</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First 5 rows of DataFrame:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First 5 rows of DataFrame:
-       country continent  year  lifeExp       pop   gdpPercap
-0  Afghanistan      Asia  1952   28.801   8425333  779.445314
-1  Afghanistan      Asia  1957   30.332   9240934  820.853030
-2  Afghanistan      Asia  1962   31.997  10267083  853.100710
-3  Afghanistan      Asia  1967   34.020  11537966  836.197138
-4  Afghanistan      Asia  1972   36.088  13079460  739.981106
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. Generate descriptive statistics</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Descriptive Statistics:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Descriptive Statistics:
-             year      lifeExp           pop      gdpPercap
-count  1704.00000  1704.000000  1.704000e+03    1704.000000
-mean   1979.50000    59.474439  2.960121e+07    7215.327081
-std      17.26533    12.917107  1.061579e+08    9857.454543
-min    1952.00000    23.599000  6.001100e+04     241.165876
-25%    1965.75000    48.198000  2.793664e+06    1202.060309
-50%    1979.50000    60.712500  7.023596e+06    3531.846988
-75%    1993.25000    70.845500  1.958522e+07    9325.462346
-max    2007.00000    82.603000  1.318683e+09  113523.132900
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>ตัวอย่างภาษา Compiler และ Interpreter<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Compiler</strong>: C, C++, Java</p></li>
+<li><p><strong>Interpreter</strong>: Python, Ruby, JavaScript</p></li>
+</ul>
 </section>
 </section>
 
@@ -536,6 +567,24 @@ max    2007.00000    82.603000  1.318683e+09  113523.132900
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">บทนำสู่การเขียนโปรแกรมคอมพิวเตอร์</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Programming-Procedure.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -552,7 +601,16 @@ max    2007.00000    82.603000  1.318683e+09  113523.132900
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">Code Example:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-language">Programming Language (ภาษาโปรแกรม)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler">Compiler (ตัวแปลภาษา)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreter">Interpreter (ตัวแปลภาษา)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler-vs-interpreter">Compiler vs Interpreter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compiler:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Interpreter:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiler-interpreter">ข้อแตกต่างระหว่าง Compiler และ Interpreter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ตัวอย่างภาษา Compiler และ Interpreter</a></li>
 </ul>
   </nav></div>
 
