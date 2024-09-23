@@ -32,3 +32,7 @@ execute:
 tags:
   remove_input:
     - hide-input
+
+sphinx:
+  extra_extensions:
+    - sphinx_proof

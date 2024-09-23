@@ -1,0 +1,16 @@
+
+digraph G {
+    st36 [shape="ellipse", label="start a_pyflow_test"];
+    op37 [shape="box", label="do something"];
+    cond38 [shape="diamond", label="Yes or No?"];
+    io39 [shape="parallelogram", label="something..."];
+    e41 [shape="ellipse", label="end a_pyflow_test"];
+    sub40 [shape="box", label="A Subroutine"];
+
+    st36 -> op37;
+    op37 -> cond38;
+    cond38 -> io39 [label="Yes"];
+    io39 -> e41;
+    cond38 -> sub40 [label="No"];
+    sub40 -> op37 [label="right"];
+}

@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Programming-Procedure-Copy1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    บทนำสู่การเขียนโปรแกรมคอมพิวเตอร์
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction-to-Programming.html">ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Programming-Procedure.html">การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FProgramming-Procedure-Copy1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Programming-Procedure-Copy1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-solving">การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-example">ตัวอย่างผังงาน (Flowchart Example)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-example">ตัวอย่างซูโดโค้ด (Pseudo Code Example)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="programming-procedure">
+<h1>การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)<a class="headerlink" href="#programming-procedure" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="problem-solving">
+<h2>การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)<a class="headerlink" href="#problem-solving" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>ขั้นตอนการแก้ปัญหา (Problem Solving Steps)</p>
+<ol class="arabic simple">
+<li><p>ทำความเข้าใจปัญหา</p></li>
+<li><p>วางแผนการแก้ปัญหา</p></li>
+<li><p>แปลงแผนเป็นโปรแกรม</p></li>
+<li><p>ทดสอบและแก้ไข</p></li>
+<li><p>ทบทวนและปรับปรุง</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="flowchart">
+<h2>ผังงาน (Flowchart)<a class="headerlink" href="#flowchart" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>ผังงานคืออะไร?</p>
+<ul>
+<li><p>เครื่องมือในการแสดงขั้นตอนการทำงานหรือการแก้ปัญหาเป็นลำดับขั้นตอนโดยใช้สัญลักษณ์มาตรฐาน</p></li>
+</ul>
+</li>
+<li><p>สัญลักษณ์ที่ใช้ในผังงาน</p>
+<ul>
+<li><p>สี่เหลี่ยมผืนผ้า: กระบวนการ (Process)</p></li>
+<li><p>ข้าวหลามตัด: การตัดสินใจ (Decision)</p></li>
+<li><p>วงรี: จุดเริ่มต้น/จุดสิ้นสุด (Start/End)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="flowchart-example">
+<h2>ตัวอย่างผังงาน (Flowchart Example)<a class="headerlink" href="#flowchart-example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>โจทย์</strong>: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่</p></li>
+</ul>
+<p><strong>ผังงาน:</strong></p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>(เริ่ม)
+   |
+   V
+รับค่า n จากผู้ใช้
+   |
+   V
+n % 2 == 0?
+   / \
+  /   \
+ใช่  ไม่ใช่
+/       \
+แสดงว่า   แสดงว่า
+เป็นเลขคู่ เป็นเลขคี่
+   |
+   V
+(สิ้นสุด)
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pseudo-code">
+<h2>ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)<a class="headerlink" href="#pseudo-code" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>ซูโดโค้ดคืออะไร?</p>
+<ul>
+<li><p>เป็นการเขียนขั้นตอนการแก้ปัญหาในรูปแบบที่เข้าใจง่าย ใกล้เคียงกับภาษาโปรแกรมแต่ไม่ต้องอิงตามหลักไวยากรณ์ใด ๆ</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="pseudo-code-example">
+<h2>ตัวอย่างซูโดโค้ด (Pseudo Code Example)<a class="headerlink" href="#pseudo-code-example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>โจทย์</strong>: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่ (ตามผังงานก่อนหน้า)</p></li>
+</ul>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>เริ่มต้นโปรแกรม
+    รับค่า n
+    ถ้า (n % 2 == 0) {
+        แสดงว่า &quot;n เป็นเลขคู่&quot;
+    } มิฉะนั้น {
+        แสดงว่า &quot;n เป็นเลขคี่&quot;
+    }
+สิ้นสุดโปรแกรม
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">st</span> <span class="o">=</span> <span class="n">StartNode</span><span class="p">(</span><span class="s1">&#39;a_pyflow_test&#39;</span><span class="p">)</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">OperationNode</span><span class="p">(</span><span class="s1">&#39;do something&#39;</span><span class="p">)</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="n">ConditionNode</span><span class="p">(</span><span class="s1">&#39;Yes or No?&#39;</span><span class="p">)</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">InputOutputNode</span><span class="p">(</span><span class="n">InputOutputNode</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="s1">&#39;something...&#39;</span><span class="p">)</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">SubroutineNode</span><span class="p">(</span><span class="s1">&#39;A Subroutine&#39;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">EndNode</span><span class="p">(</span><span class="s1">&#39;a_pyflow_test&#39;</span><span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<span class="n">cond</span><span class="o">.</span><span class="n">connect_yes</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+<span class="n">cond</span><span class="o">.</span><span class="n">connect_no</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># sub-&gt;op line starts from the right of sub</span>
+<span class="n">io</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+ 
+<span class="n">fc</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st0=&gt;start: start a_pyflow_test
+op1=&gt;operation: do something
+cond2=&gt;condition: Yes or No?
+io3=&gt;inputoutput: output: something...
+e5=&gt;end: end a_pyflow_test
+sub4=&gt;subroutine: A Subroutine
+
+st0-&gt;op1
+op1-&gt;cond2
+cond2-&gt;
+cond2-&gt;
+cond2(yes)-&gt;io3
+io3-&gt;e5
+cond2(no)-&gt;sub4
+sub4(right)-&gt;op1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st0=&gt;start: start a_pyflow_test
+op1=&gt;operation: do something
+cond2=&gt;condition: Yes or No?
+io3=&gt;inputoutput: output: something...
+e5=&gt;end: end a_pyflow_test
+sub4=&gt;subroutine: A Subroutine
+
+st0-&gt;op1
+op1-&gt;cond2
+cond2-&gt;
+cond2-&gt;
+cond2(yes)-&gt;io3
+io3-&gt;e5
+cond2(no)-&gt;sub4
+sub4(right)-&gt;op1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert_pyflowchart_to_graphviz</span><span class="p">(</span><span class="n">pyflowchart_code</span><span class="p">):</span>
+    <span class="c1"># Replace start, operation, condition, inputoutput, subroutine, and end nodes</span>
+    <span class="n">replacements</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;=&gt;start:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;ellipse&quot;, label=&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;=&gt;operation:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;box&quot;, label=&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;=&gt;condition:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;diamond&quot;, label=&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;=&gt;inputoutput: output:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;parallelogram&quot;, label=&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;=&gt;subroutine:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;box&quot;, label=&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;=&gt;end:&#39;</span><span class="p">:</span> <span class="s1">&#39;[shape=&quot;ellipse&quot;, label=&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Initialize Graphviz DOT code string</span>
+    <span class="n">dot_code</span> <span class="o">=</span> <span class="s1">&#39;digraph G {</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+    <span class="c1"># Process each line in pyflowchart code</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pyflowchart_code</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="c1"># Process node definitions</span>
+        <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">replacements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">old</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">)</span>  <span class="c1"># Close the label</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;];</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># Close the node definition</span>
+        <span class="c1"># Process the connections</span>
+        <span class="k">if</span> <span class="s1">&#39;-&gt;&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="s1">&#39;(yes)&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(yes)-&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39; -&gt; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; [label=&quot;Yes&quot;];&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;-&gt;&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="s1">&#39;(no)&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(no)-&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39; -&gt; &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; [label=&quot;No&quot;];&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;-&gt;&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39;;&#39;</span>
+        <span class="n">dot_code</span> <span class="o">+=</span> <span class="n">line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+    <span class="n">dot_code</span> <span class="o">+=</span> <span class="s1">&#39;}&#39;</span>
+    <span class="k">return</span> <span class="n">dot_code</span>
+
+<span class="c1"># Convert the pseudo-DOT to proper DOT syntax</span>
+<span class="n">graphviz_code</span> <span class="o">=</span> <span class="n">convert_pyflowchart_to_graphviz</span><span class="p">(</span><span class="n">dot_code</span><span class="p">)</span>
+
+<span class="c1"># Print to verify</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">graphviz_code</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">36</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="k">return</span> <span class="n">dot_code</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="c1"># Convert the pseudo-DOT to proper DOT syntax</span>
+<span class="ne">---&gt; </span><span class="mi">36</span> <span class="n">graphviz_code</span> <span class="o">=</span> <span class="n">convert_pyflowchart_to_graphviz</span><span class="p">(</span><span class="n">dot_code</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="c1"># Print to verify</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="nb">print</span><span class="p">(</span><span class="n">graphviz_code</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dot_code&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+
+<span class="c1"># Corrected DOT code</span>
+<span class="n">dot_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">digraph G {</span>
+<span class="s2">    st36 [shape=&quot;ellipse&quot;, label=&quot;start a_pyflow_test&quot;];</span>
+<span class="s2">    op37 [shape=&quot;box&quot;, label=&quot;do something&quot;];</span>
+<span class="s2">    cond38 [shape=&quot;diamond&quot;, label=&quot;Yes or No?&quot;];</span>
+<span class="s2">    io39 [shape=&quot;parallelogram&quot;, label=&quot;something...&quot;];</span>
+<span class="s2">    e41 [shape=&quot;ellipse&quot;, label=&quot;end a_pyflow_test&quot;];</span>
+<span class="s2">    sub40 [shape=&quot;box&quot;, label=&quot;A Subroutine&quot;];</span>
+
+<span class="s2">    st36 -&gt; op37;</span>
+<span class="s2">    op37 -&gt; cond38;</span>
+<span class="s2">    cond38 -&gt; io39 [label=&quot;Yes&quot;];</span>
+<span class="s2">    io39 -&gt; e41;</span>
+<span class="s2">    cond38 -&gt; sub40 [label=&quot;No&quot;];</span>
+<span class="s2">    sub40 -&gt; op37 [label=&quot;right&quot;];</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Render the graph</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_code</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;flowchart&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">cleanup</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;flowchart.pdf&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def check_even_odd(number):</span>
+<span class="s2">    if number % 2 == 0:</span>
+<span class="s2">        print(&quot;Even&quot;)</span>
+<span class="s2">    else:</span>
+<span class="s2">        print(&quot;Odd&quot;)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st57=&gt;start: start check_even_odd
+io59=&gt;inputoutput: input: number
+cond63=&gt;condition: if ((number % 2) == 0)
+sub67=&gt;subroutine: print(&#39;Even&#39;)
+e74=&gt;end: end check_even_odd
+sub71=&gt;subroutine: print(&#39;Odd&#39;)
+
+st57-&gt;io59
+io59-&gt;cond63
+cond63(yes)-&gt;sub67
+sub67-&gt;e74
+cond63(no)-&gt;sub71
+sub71-&gt;e74
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="c1"># Your Python code that checks if a number is even or odd</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def check_even_odd(number):</span>
+<span class="s2">    if number % 2 == 0:</span>
+<span class="s2">        print(&quot;Even&quot;)</span>
+<span class="s2">    else:</span>
+<span class="s2">        print(&quot;Odd&quot;)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Create the flowchart from the code</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart in the mermaid format</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st80=&gt;start: start check_even_odd
+io82=&gt;inputoutput: input: number
+cond86=&gt;condition: if ((number % 2) == 0)
+sub90=&gt;subroutine: print(&#39;Even&#39;)
+e97=&gt;end: end check_even_odd
+sub94=&gt;subroutine: print(&#39;Odd&#39;)
+
+st80-&gt;io82
+io82-&gt;cond86
+cond86(yes)-&gt;sub90
+sub90-&gt;e97
+cond86(no)-&gt;sub94
+sub94-&gt;e97
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="c1"># Modified code for checking even or odd</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def check_even_odd(number):</span>
+<span class="s2">    result = &#39;&#39;</span>
+<span class="s2">    if number % 2 == 0:</span>
+<span class="s2">        result = &#39;Even&#39;</span>
+<span class="s2">    else:</span>
+<span class="s2">        result = &#39;Odd&#39;</span>
+<span class="s2">    print(result)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Create the flowchart from the modified code</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart in the mermaid format</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st103=&gt;start: start check_even_odd
+io105=&gt;inputoutput: input: number
+op108=&gt;operation: result = &#39;&#39;
+cond111=&gt;condition: if ((number % 2) == 0)
+op115=&gt;operation: result = &#39;Even&#39;
+sub122=&gt;subroutine: print(result)
+e124=&gt;end: end check_even_odd
+op119=&gt;operation: result = &#39;Odd&#39;
+
+st103-&gt;io105
+io105-&gt;op108
+op108-&gt;cond111
+cond111(yes)-&gt;op115
+op115-&gt;sub122
+sub122-&gt;e124
+cond111(no)-&gt;op119
+op119-&gt;sub122
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Create the nodes</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">StartNode</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">EndNode</span><span class="p">(</span><span class="s1">&#39;End&#39;</span><span class="p">)</span>
+
+<span class="c1"># Connect the nodes</span>
+<span class="n">st</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Create the flowchart</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart as a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st173=&gt;start: start Start
+e174=&gt;end: end End
+
+st173-&gt;e174
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Create the nodes</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">StartNode</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">)</span>
+<span class="n">io</span> <span class="o">=</span> <span class="n">InputOutputNode</span><span class="p">(</span><span class="n">InputOutputNode</span><span class="o">.</span><span class="n">INPUT</span><span class="p">,</span> <span class="s1">&#39;Input number&#39;</span><span class="p">)</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="n">ConditionNode</span><span class="p">(</span><span class="s1">&#39;Is number % 2 == 0?&#39;</span><span class="p">)</span>
+<span class="n">even</span> <span class="o">=</span> <span class="n">InputOutputNode</span><span class="p">(</span><span class="n">InputOutputNode</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="s1">&#39;Print &quot;Even&quot;&#39;</span><span class="p">)</span>
+<span class="n">odd</span> <span class="o">=</span> <span class="n">InputOutputNode</span><span class="p">(</span><span class="n">InputOutputNode</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="s1">&#39;Print &quot;Odd&quot;&#39;</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">EndNode</span><span class="p">(</span><span class="s1">&#39;End&#39;</span><span class="p">)</span>
+
+<span class="c1"># Connect the nodes</span>
+<span class="n">st</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<span class="n">cond</span><span class="o">.</span><span class="n">connect_yes</span><span class="p">(</span><span class="n">even</span><span class="p">)</span>
+<span class="n">cond</span><span class="o">.</span><span class="n">connect_no</span><span class="p">(</span><span class="n">odd</span><span class="p">)</span>
+<span class="n">even</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="n">odd</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Create the flowchart</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart as a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st234=&gt;start: start Start
+io235=&gt;inputoutput: input: Input number
+cond236=&gt;condition: Is number % 2 == 0?
+io237=&gt;inputoutput: output: Print &quot;Even&quot;
+e239=&gt;end: end End
+io238=&gt;inputoutput: output: Print &quot;Odd&quot;
+
+st234-&gt;io235
+io235-&gt;cond236
+cond236-&gt;
+cond236-&gt;
+cond236(yes)-&gt;io237
+io237-&gt;e239
+cond236(no)-&gt;io238
+io238-&gt;e239
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># Start</span>
+<span class="s2">x = 1</span>
+<span class="s2">y = 2</span>
+<span class="s2">z = x + y</span>
+<span class="s2"># Stop</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>op228=&gt;operation: x = 1
+op230=&gt;operation: y = 2
+op232=&gt;operation: z = (x + y)
+
+op228-&gt;op230
+op230-&gt;op232
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-solving">การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-example">ตัวอย่างผังงาน (Flowchart Example)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-example">ตัวอย่างซูโดโค้ด (Pseudo Code Example)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

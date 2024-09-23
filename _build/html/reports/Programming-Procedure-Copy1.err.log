@@ -1,0 +1,73 @@
+Traceback (most recent call last):
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/Kaemyui/anaconda3/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def convert_pyflowchart_to_graphviz(pyflowchart_code):
+    # Replace start, operation, condition, inputoutput, subroutine, and end nodes
+    replacements = {
+        '=>start:': '[shape="ellipse", label=',
+        '=>operation:': '[shape="box", label=',
+        '=>condition:': '[shape="diamond", label=',
+        '=>inputoutput: output:': '[shape="parallelogram", label=',
+        '=>subroutine:': '[shape="box", label=',
+        '=>end:': '[shape="ellipse", label=',
+    }
+
+    # Initialize Graphviz DOT code string
+    dot_code = 'digraph G {\n'
+
+    # Process each line in pyflowchart code
+    for line in pyflowchart_code.splitlines():
+        # Process node definitions
+        for old, new in replacements.items():
+            if old in line:
+                line = line.replace(old, new)
+                line = line.replace(':', '"]')  # Close the label
+                line = line.replace('->', '];\n')  # Close the node definition
+        # Process the connections
+        if '->' in line and '(yes)' in line:
+            line = line.replace('(yes)->', ' -> ') + ' [label="Yes"];'
+        elif '->' in line and '(no)' in line:
+            line = line.replace('(no)->', ' -> ') + ' [label="No"];'
+        elif '->' in line:
+            line += ';'
+        dot_code += line + '\n'
+
+    dot_code += '}'
+    return dot_code
+
+# Convert the pseudo-DOT to proper DOT syntax
+graphviz_code = convert_pyflowchart_to_graphviz(dot_code)
+
+# Print to verify
+print(graphviz_code)
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[3], line 36[0m
+[1;32m     33[0m     [38;5;28;01mreturn[39;00m dot_code
+[1;32m     35[0m [38;5;66;03m# Convert the pseudo-DOT to proper DOT syntax[39;00m
+[0;32m---> 36[0m graphviz_code [38;5;241m=[39m convert_pyflowchart_to_graphviz([43mdot_code[49m)
+[1;32m     38[0m [38;5;66;03m# Print to verify[39;00m
+[1;32m     39[0m [38;5;28mprint[39m(graphviz_code)
+
+[0;31mNameError[0m: name 'dot_code' is not defined
+NameError: name 'dot_code' is not defined
+

@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -377,10 +378,35 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-solving">การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-example">ตัวอย่างผังงาน (Flowchart Example)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-example">ตัวอย่างซูโดโค้ด (Pseudo Code Example)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">อัลกอริธึม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ความเชื่อมโยงอัลกอริธึม กับการสร้างผังงาน และรหัสเทียม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">สัญลักษณ์หลัก ๆ ที่ใช้ในผังงาน</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowcharts">การทำความเข้าใจ Flowcharts: รูปแบบต่าง ๆ และตัวอย่าง</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-process">1. แบบลำดับ (Sequence Process)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ตัวอย่าง: คำนวณผลรวมของตัวเลข</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-python-code">การแสดงผล Flowchart จาก Python Code</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-int">คำอธิบายเกี่ยวกับ <code class="docutils literal notranslate"><span class="pre">map(int,</span> <span class="pre">...)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selection">2. แบบทางเลือก (Selection)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ตัวอย่าง: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-statements">3. แบบทำซ้ำ (Iteration Statements)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ตัวอย่าง: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ด (Pseudo Code)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ตัวอย่างที่ 1: ตรวจสอบว่าเลขคู่หรือเลขคี่</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ตัวอย่างที่ 2: คำนวณผลรวมของตัวเลข</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ตัวอย่างที่ 3: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -394,135 +420,350 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="programming-procedure">
 <h1>การเขียนโปรแกรมในแบบที่คอมพิวเตอร์เข้าใจได้ (Programming Procedure)<a class="headerlink" href="#programming-procedure" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
 <section id="problem-solving">
 <h2>การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)<a class="headerlink" href="#problem-solving" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>ขั้นตอนการแก้ปัญหา (Problem Solving Steps)</p>
-<ol class="arabic simple">
-<li><p>ทำความเข้าใจปัญหา</p></li>
-<li><p>วางแผนการแก้ปัญหา</p></li>
-<li><p>แปลงแผนเป็นโปรแกรม</p></li>
-<li><p>ทดสอบและแก้ไข</p></li>
-<li><p>ทบทวนและปรับปรุง</p></li>
-</ol>
-</li>
-</ul>
+<p>การตีโจทย์ปัญหาคือขั้นตอนในการทำความเข้าใจปัญหาที่เราต้องการแก้ไข และการแปลงปัญหานั้นให้เป็นภาษาที่คอมพิวเตอร์เข้าใจได้ ขั้นตอนนี้เกี่ยวข้องกับการสร้างอัลกอริธึม ซึ่งเป็นชุดของขั้นตอนที่ชัดเจนในการดำเนินการแก้ปัญหา เช่น การคำนวณ การตัดสินใจ หรือการทำซ้ำ</p>
 </section>
 <hr class="docutils" />
+<section id="id1">
+<h2>อัลกอริธึม<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>อัลกอริธึม</strong> เป็นการกำหนดลำดับของขั้นตอนที่จำเป็นเพื่อให้ได้ผลลัพธ์ที่ต้องการ เช่น ถ้าเราต้องการหาผลรวมของตัวเลข 1 ถึง 10 อัลกอริธึมอาจจะระบุขั้นตอนในการเพิ่มตัวเลขแต่ละตัวเข้าไปในตัวแปรผลรวม</p>
+<div class="proof algorithm admonition" id="sum-algorithm">
+<p class="admonition-title"><span class="caption-number">Algorithm 1 </span> (การหาผลรวมของตัวเลข 1 ถึง 10)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> ตัวเลข ( n = 10 )</p>
+<p><strong>Output</strong> ผลรวมของตัวเลขตั้งแต่ 1 ถึง ( n )</p>
+<ol class="arabic simple">
+<li><p><strong>เริ่มต้น</strong> (Start)</p></li>
+<li><p>กำหนดตัวแปร <code class="docutils literal notranslate"><span class="pre">sum</span></code> ให้เป็น 0</p></li>
+<li><p>กำหนดตัวแปร <code class="docutils literal notranslate"><span class="pre">number</span></code> ให้เป็น 1</p></li>
+<li><p><strong>ทำซ้ำ</strong> จนกว่า <code class="docutils literal notranslate"><span class="pre">number</span></code> จะมากกว่า 10:</p>
+<ul class="simple">
+<li><p>เพิ่มค่า <code class="docutils literal notranslate"><span class="pre">number</span></code> เข้าไปใน <code class="docutils literal notranslate"><span class="pre">sum</span></code></p></li>
+<li><p>เพิ่มค่า <code class="docutils literal notranslate"><span class="pre">number</span></code> ขึ้น 1</p></li>
+</ul>
+</li>
+<li><p>แสดงผลค่า <code class="docutils literal notranslate"><span class="pre">sum</span></code></p></li>
+<li><p><strong>สิ้นสุด</strong> (End)</p></li>
+</ol>
+</section>
+</div><div class="proof algorithm admonition" id="even-odd-algorithm">
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (การตรวจสอบว่าเลขที่ป้อนเข้ามาเป็นเลขคู่หรือเลขคี่ โดยใช้การตรวจสอบการหารด้วย 2 เป็นหลัก)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> ตัวเลข ( n )</p>
+<p><strong>Output</strong> ระบุว่า ( n ) เป็นเลขคู่หรือเลขคี่</p>
+<ol class="arabic simple">
+<li><p><strong>เริ่มต้น</strong> (Start)</p></li>
+<li><p>If ( n \mod 2 = 0 ) then:</p>
+<ul class="simple">
+<li><p>แสดง “เลขคู่”</p></li>
+</ul>
+</li>
+<li><p>Else:</p>
+<ul class="simple">
+<li><p>แสดง “เลขคี่”</p></li>
+</ul>
+</li>
+<li><p><strong>สิ้นสุด</strong> (End)</p></li>
+</ol>
+</section>
+</div></section>
+<hr class="docutils" />
+<section id="id2">
+<h2>ความเชื่อมโยงอัลกอริธึม กับการสร้างผังงาน และรหัสเทียม<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>อัลกอริธึมสามารถแสดงได้ในรูปแบบต่าง ๆ เช่น ผังงาน (Flowchart) และซูโดโค้ด (Pseudo Code)</p>
+</section>
 <section id="flowchart">
 <h2>ผังงาน (Flowchart)<a class="headerlink" href="#flowchart" title="Link to this heading">#</a></h2>
+<p>ผังงานคือการเขียนอธิบายการทำงานของโปรแกรมในรูปแบบสัญลักษณ์หรือรูปภาพ ซึ่งสามารถเข้าใจได้ง่ายกว่าการอธิบายเป็นข้อความธรรมดา การใช้ผังงานช่วยให้เห็นลำดับขั้นตอน (Algorithm) การทำงานของโปรแกรมอย่างชัดเจน โดยเฉพาะเมื่อเจอโจทย์ที่มีความซับซ้อน การอธิบายขั้นตอนการแก้ปัญหาด้วยข้อความอาจทำให้เกิดความสับสนได้ แต่การใช้ผังงานช่วยทำให้การอธิบายง่ายขึ้นและมีความเป็นมาตรฐานในการใช้งานทั่วไป</p>
+<section id="id3">
+<h3>สัญลักษณ์หลัก ๆ ที่ใช้ในผังงาน<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>สี่เหลี่ยมผืนผ้า (Process)</strong>: ใช้สำหรับแสดงการดำเนินการต่าง ๆ เช่น การคำนวณ หรือการประมวลผลข้อมูล</p>
 <ul class="simple">
-<li><p>ผังงานคืออะไร?</p>
-<ul>
-<li><p>เครื่องมือในการแสดงขั้นตอนการทำงานหรือการแก้ปัญหาเป็นลำดับขั้นตอนโดยใช้สัญลักษณ์มาตรฐาน</p></li>
+<li><p>ตัวอย่าง: การคำนวณผลรวม</p></li>
 </ul>
 </li>
-<li><p>สัญลักษณ์ที่ใช้ในผังงาน</p>
-<ul>
-<li><p>สี่เหลี่ยมผืนผ้า: กระบวนการ (Process)</p></li>
-<li><p>ข้าวหลามตัด: การตัดสินใจ (Decision)</p></li>
-<li><p>วงรี: จุดเริ่มต้น/จุดสิ้นสุด (Start/End)</p></li>
+<li><p><strong>วงรี (Start/End)</strong>: ใช้สำหรับระบุจุดเริ่มต้นและจุดสิ้นสุดของผังงาน</p>
+<ul class="simple">
+<li><p>ตัวอย่าง: จุดเริ่มต้นของโปรแกรม</p></li>
 </ul>
 </li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="flowchart-example">
-<h2>ตัวอย่างผังงาน (Flowchart Example)<a class="headerlink" href="#flowchart-example" title="Link to this heading">#</a></h2>
+<li><p><strong>รูปเพชร (Decision)</strong>: ใช้สำหรับแสดงการตัดสินใจที่ต้องเลือกเส้นทาง เช่น การตรวจสอบเงื่อนไข</p>
 <ul class="simple">
-<li><p><strong>โจทย์</strong>: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่</p></li>
+<li><p>ตัวอย่าง: การตรวจสอบว่าเลขเป็นคู่หรือคี่</p></li>
 </ul>
-<p><strong>ผังงาน:</strong></p>
-<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>(เริ่ม)
-   |
-   V
-รับค่า n จากผู้ใช้
-   |
-   V
-n % 2 == 0?
-   / \
-  /   \
-ใช่  ไม่ใช่
-/       \
-แสดงว่า   แสดงว่า
-เป็นเลขคู่ เป็นเลขคี่
-   |
-   V
-(สิ้นสุด)
-</pre></div>
+</li>
+<li><p><strong>สี่เหลี่ยมด้านขนาน (Input/Output)</strong>: ใช้สำหรับแสดงการรับข้อมูลเข้า หรือการแสดงผลลัพธ์ออก</p>
+<ul class="simple">
+<li><p>ตัวอย่าง: การรับค่าตัวเลขจากผู้ใช้ หรือการแสดงผลลัพธ์ของการคำนวณ</p></li>
+</ul>
+</li>
+<li><p><strong>ลูกศร (Flow Line)</strong>: ใช้เพื่อเชื่อมโยงระหว่างสัญลักษณ์ต่าง ๆ และแสดงลำดับการทำงาน</p>
+<ul class="simple">
+<li><p>ตัวอย่าง: แสดงลำดับขั้นตอนการทำงาน</p></li>
+</ul>
+</li>
+</ol>
+<p>การใช้ผังงานช่วยให้สามารถสื่อสารแนวคิดได้อย่างมีประสิทธิภาพและลดความยุ่งเหยิงในการอธิบายขั้นตอนการทำงานของโปรแกรม ซึ่งเหมาะสำหรับการนำเสนอแนวคิดที่ซับซ้อนในรูปแบบที่เข้าใจง่าย</p>
+<figure class="align-default" id="figure-flow-chart-1">
+<img alt="_images/Flow-Chart-1.png" src="_images/Flow-Chart-1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Flowchart Symbols</span><a class="headerlink" href="#figure-flow-chart-1" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image from <a class="reference external" href="https://thaiwinner.com/flow-chart/">https://thaiwinner.com/flow-chart/</a></p>
 </div>
-</section>
-<hr class="docutils" />
-<section id="pseudo-code">
-<h2>ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)<a class="headerlink" href="#pseudo-code" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>ซูโดโค้ดคืออะไร?</p>
-<ul>
-<li><p>เป็นการเขียนขั้นตอนการแก้ปัญหาในรูปแบบที่เข้าใจง่าย ใกล้เคียงกับภาษาโปรแกรมแต่ไม่ต้องอิงตามหลักไวยากรณ์ใด ๆ</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="pseudo-code-example">
-<h2>ตัวอย่างซูโดโค้ด (Pseudo Code Example)<a class="headerlink" href="#pseudo-code-example" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>โจทย์</strong>: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่ (ตามผังงานก่อนหน้า)</p></li>
-</ul>
-<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>เริ่มต้นโปรแกรม
-    รับค่า n
-    ถ้า (n % 2 == 0) {
-        แสดงว่า &quot;n เป็นเลขคู่&quot;
-    } มิฉะนั้น {
-        แสดงว่า &quot;n เป็นเลขคี่&quot;
-    }
-สิ้นสุดโปรแกรม
-</pre></div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<img alt="_images/Flow-Chart-2.png" src="_images/Flow-Chart-2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">More Flowchart Symbols</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image from <a class="reference external" href="https://thaiwinner.com/flow-chart/">https://thaiwinner.com/flow-chart/</a></p>
 </div>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="flowcharts">
+<h2>การทำความเข้าใจ Flowcharts: รูปแบบต่าง ๆ และตัวอย่าง<a class="headerlink" href="#flowcharts" title="Link to this heading">#</a></h2>
+<section id="sequence-process">
+<h3>1. แบบลำดับ (Sequence Process)<a class="headerlink" href="#sequence-process" title="Link to this heading">#</a></h3>
+<p><strong>Flowchart แบบลำดับ</strong> เป็นการแสดงลำดับขั้นตอนที่ดำเนินการต่อเนื่องกันไป โดยไม่มีการตัดสินใจหรือทำซ้ำ ขั้นตอนจะถูกดำเนินการตามลำดับที่กำหนดไว้</p>
+<section id="id5">
+<h4>ตัวอย่าง: คำนวณผลรวมของตัวเลข<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>รับค่าตัวเลขจากผู้ใช้</p></li>
+<li><p>คำนวณผลรวมของตัวเลข</p></li>
+<li><p>แสดงผลลัพธ์</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
 
-<span class="n">st</span> <span class="o">=</span> <span class="n">StartNode</span><span class="p">(</span><span class="s1">&#39;a_pyflow_test&#39;</span><span class="p">)</span>
-<span class="n">op</span> <span class="o">=</span> <span class="n">OperationNode</span><span class="p">(</span><span class="s1">&#39;do something&#39;</span><span class="p">)</span>
-<span class="n">cond</span> <span class="o">=</span> <span class="n">ConditionNode</span><span class="p">(</span><span class="s1">&#39;Yes or No?&#39;</span><span class="p">)</span>
-<span class="n">io</span> <span class="o">=</span> <span class="n">InputOutputNode</span><span class="p">(</span><span class="n">InputOutputNode</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">,</span> <span class="s1">&#39;something...&#39;</span><span class="p">)</span>
-<span class="n">sub</span> <span class="o">=</span> <span class="n">SubroutineNode</span><span class="p">(</span><span class="s1">&#39;A Subroutine&#39;</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">EndNode</span><span class="p">(</span><span class="s1">&#39;a_pyflow_test&#39;</span><span class="p">)</span>
+<span class="c1"># Your Python code that checks if a number is even or odd</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># Your Python code that calculates the sum of numbers</span>
+<span class="s2">def calculate_sum():</span>
+<span class="s2">    numbers = input(&quot;Enter numbers separated by space: &quot;)</span>
+<span class="s2">    number_list = map(int, numbers.split())</span>
+<span class="s2">    total_sum = sum(number_list)</span>
+<span class="s2">    print(&quot;Sum:&quot;, total_sum)</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-<span class="n">st</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
-<span class="n">op</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
-<span class="n">cond</span><span class="o">.</span><span class="n">connect_yes</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
-<span class="n">cond</span><span class="o">.</span><span class="n">connect_no</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
-<span class="n">sub</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># sub-&gt;op line starts from the right of sub</span>
-<span class="n">io</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
- 
-<span class="n">fc</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+<span class="c1"># Create the flowchart from the code</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart in the mermaid format</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st81=&gt;start: start a_pyflow_test
-op82=&gt;operation: do something
-cond83=&gt;condition: Yes or No?
-io84=&gt;inputoutput: output: something...
-e86=&gt;end: end a_pyflow_test
-sub85=&gt;subroutine: A Subroutine
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st70=&gt;start: start calculate_sum
+io72=&gt;inputoutput: input: 
+op75=&gt;operation: numbers = input(&#39;Enter numbers separated by space: &#39;)
+op77=&gt;operation: number_list = map(int, numbers.split())
+op79=&gt;operation: total_sum = sum(number_list)
+sub81=&gt;subroutine: print(&#39;Sum:&#39;, total_sum)
+e83=&gt;end: end calculate_sum
 
-st81-&gt;op82
-op82-&gt;cond83
-cond83-&gt;
-cond83-&gt;
-cond83(yes)-&gt;io84
-io84-&gt;e86
-cond83(no)-&gt;sub85
-sub85(right)-&gt;op82
+st70-&gt;io72
+io72-&gt;op75
+op75-&gt;op77
+op77-&gt;op79
+op79-&gt;sub81
+sub81-&gt;e83
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="flowchart-python-code">
+<h4>การแสดงผล Flowchart จาก Python Code<a class="headerlink" href="#flowchart-python-code" title="Link to this heading">#</a></h4>
+<p>เมื่อคุณสร้าง output ของ flowchart จาก Python code แล้ว
+คุณสามารถทำการแสดงผลได้ง่ายๆ โดยทำตามขั้นตอนดังนี้:</p>
+<ol class="arabic simple">
+<li><p><strong>คัดลอก Output</strong>:</p>
+<ul class="simple">
+<li><p>คัดลอก output ของ flowchart ที่ได้จาก Python code</p></li>
+</ul>
+</li>
+<li><p><strong>วางในเว็บไซต์</strong>:</p>
+<ul class="simple">
+<li><p>ไปที่ <a class="reference external" href="https://flowchart.js.org/">flowchart.js.org</a></p></li>
+<li><p>วาง output ที่คัดลอกลงในพื้นที่ที่กำหนด</p></li>
+</ul>
+</li>
+<li><p><strong>ดูผลลัพธ์</strong>:</p>
+<ul class="simple">
+<li><p>คุณจะสามารถเห็น flowchart ที่ถูกสร้างขึ้นจาก output ของคุณ</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="map-int">
+<h3>คำอธิบายเกี่ยวกับ <code class="docutils literal notranslate"><span class="pre">map(int,</span> <span class="pre">...)</span></code><a class="headerlink" href="#map-int" title="Link to this heading">#</a></h3>
+<p>ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">map(int,</span> <span class="pre">...)</span></code> ใน Python ใช้สำหรับนำฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">int</span></code> ไปใช้กับแต่ละรายการใน iterable (เช่น รายการหรือตัวอักษร) เพื่อแปลงแต่ละรายการเป็นจำนวนเต็ม</p>
+<p>ตัวอย่างเช่น ในโค้ดด้านล่าง:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter numbers separated by space: &quot;</span><span class="p">)</span>
+<span class="n">number_list</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numbers.split()</span></code> จะทำการแยกสตริงที่มีตัวเลขโดยใช้ช่องว่างเป็นตัวแบ่งและส่งกลับเป็นรายการของสตริง</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map(int,</span> <span class="pre">...)</span></code> จะทำการแปลงแต่ละสตริงในรายการนั้นเป็นจำนวนเต็ม</p></li>
+</ul>
+<p>ดังนั้นถ้าผู้ใช้ป้อน “1 2 3” รายการ <code class="docutils literal notranslate"><span class="pre">number_list</span></code> จะกลายเป็น iterable ของจำนวนเต็ม: <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3</span></code> ซึ่งมีประโยชน์สำหรับการดำเนินการทางคณิตศาสตร์ต่อไปในโค้ด</p>
+</section>
+<hr class="docutils" />
+<section id="selection">
+<h3>2. แบบทางเลือก (Selection)<a class="headerlink" href="#selection" title="Link to this heading">#</a></h3>
+<p><strong>Flowchart แบบทางเลือก</strong> ใช้ในการตัดสินใจระหว่างหลายทางเลือก ขึ้นอยู่กับเงื่อนไขที่กำหนด คำสั่งที่ใช้โครงสร้างแบบทางเลือก ได้แก่ <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>, และ <code class="docutils literal notranslate"><span class="pre">switch...case</span></code></p>
+<section id="id6">
+<h4>ตัวอย่าง: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>ตรวจสอบว่าเลขที่ผู้ใช้ป้อนเป็นเลขคู่หรือเลขคี่</p></li>
+<li><p>หากเลขนั้นเป็นคู่ แสดง “เลขคู่”</p></li>
+<li><p>หากเลขนั้นเป็นคี่ แสดง “เลขคี่”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="c1"># Your Python code that checks if a number is even or odd</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def check_even_odd(number):</span>
+<span class="s2">    if number % 2 == 0:</span>
+<span class="s2">        print(&quot;Even&quot;)</span>
+<span class="s2">    else:</span>
+<span class="s2">        print(&quot;Odd&quot;)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Create the flowchart from the code</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart in the mermaid format</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st26=&gt;start: start check_even_odd
+io28=&gt;inputoutput: input: number
+cond32=&gt;condition: if ((number % 2) == 0)
+sub36=&gt;subroutine: print(&#39;Even&#39;)
+e43=&gt;end: end check_even_odd
+sub40=&gt;subroutine: print(&#39;Odd&#39;)
+
+st26-&gt;io28
+io28-&gt;cond32
+cond32(yes)-&gt;sub36
+sub36-&gt;e43
+cond32(no)-&gt;sub40
+sub40-&gt;e43
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="iteration-statements">
+<h3>3. แบบทำซ้ำ (Iteration Statements)<a class="headerlink" href="#iteration-statements" title="Link to this heading">#</a></h3>
+<p><strong>Flowchart แบบทำซ้ำ</strong> ใช้เพื่อแสดงลำดับขั้นตอนที่ดำเนินการซ้ำไปซ้ำมาจนกว่าจะถึงเงื่อนไขที่กำหนด คำสั่งที่ใช้โครงสร้างแบบทำซ้ำ ได้แก่ <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, และ <code class="docutils literal notranslate"><span class="pre">do...while</span></code></p>
+<section id="id7">
+<h4>ตัวอย่าง: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10</p></li>
+<li><p>ใช้การทำซ้ำเพื่อเพิ่มค่าตัวเลขในแต่ละรอบ</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyflowchart</span> <span class="kn">import</span> <span class="n">Flowchart</span>
+
+<span class="c1"># Your Python code to calculate the sum of numbers from 1 to 10</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def sum_from_1_to_10():</span>
+<span class="s2">    total_sum = 0</span>
+<span class="s2">    for number in range(1, 11):  # ใช้ range(1, 11) เพื่อรวม 1 ถึง 10</span>
+<span class="s2">        total_sum += number</span>
+<span class="s2">    print(&quot;ผลรวมของตัวเลขตั้งแต่ 1 ถึง 10 คือ:&quot;, total_sum)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Create the flowchart from the code</span>
+<span class="n">flowchart</span> <span class="o">=</span> <span class="n">Flowchart</span><span class="o">.</span><span class="n">from_code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span><span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Print the flowchart in the mermaid format</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flowchart</span><span class="o">.</span><span class="n">flowchart</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>st174=&gt;start: start sum_from_1_to_10
+io176=&gt;inputoutput: input: 
+op179=&gt;operation: total_sum = 0
+cond182=&gt;condition: for number in range(1, 11)
+op189=&gt;operation: total_sum += number
+sub193=&gt;subroutine: print(&#39;ผลรวมของตัวเลขตั้งแต่ 1 ถึง 10 คือ:&#39;, total_sum)
+e195=&gt;end: end sum_from_1_to_10
+
+st174-&gt;io176
+io176-&gt;op179
+op179-&gt;cond182
+cond182(yes)-&gt;op189
+op189(left)-&gt;cond182
+cond182(no)-&gt;sub193
+sub193-&gt;e195
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="pseudo-code">
+<h2>ซูโดโค้ด (Pseudo Code)<a class="headerlink" href="#pseudo-code" title="Link to this heading">#</a></h2>
+<p>ซูโดโค้ด (Pseudo Code) คือการเขียนรหัสที่มีลักษณะคล้ายกับโค้ดจริง แต่ใช้ภาษาที่เข้าใจง่ายเพื่อให้คนอ่านสามารถเข้าใจได้ง่าย โดยไม่ต้องสนใจรายละเอียดเกี่ยวกับไวยากรณ์ของภาษาการเขียนโปรแกรม</p>
+<section id="id8">
+<h3>ตัวอย่างที่ 1: ตรวจสอบว่าเลขคู่หรือเลขคี่<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION</span> <span class="n">check_even_odd</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="n">IF</span> <span class="n">number</span> <span class="n">MOD</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">THEN</span> <span class="n">PRINT</span> <span class="s2">&quot;เลขคู่&quot;</span>
+<span class="n">ELSE</span> <span class="n">PRINT</span> <span class="s2">&quot;เลขคี่&quot;</span>
+<span class="n">END</span> <span class="n">IF</span>
+<span class="n">END</span> <span class="n">FUNCTION</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>ตัวอย่างที่ 2: คำนวณผลรวมของตัวเลข<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION</span> <span class="n">calculate_sum</span><span class="p">()</span>
+<span class="n">DECLARE</span> <span class="n">total_sum</span> <span class="n">AS</span> <span class="n">INTEGER</span>
+<span class="n">SET</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">INPUT</span> <span class="s2">&quot;ป้อนตัวเลขที่แยกด้วยช่องว่าง&quot;</span> <span class="n">INTO</span> <span class="n">numbers</span>
+<span class="n">FOR</span> <span class="n">EACH</span> <span class="n">number</span> <span class="n">IN</span> <span class="n">numbers</span>
+    <span class="n">SPLIT</span> <span class="n">BY</span> <span class="n">SPACE</span>
+    <span class="n">DO</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="n">total_sum</span> <span class="o">+</span> <span class="n">CONVERT</span><span class="p">(</span><span class="n">number</span> <span class="n">TO</span> <span class="n">INTEGER</span><span class="p">)</span>
+<span class="n">END</span> <span class="n">FOR</span>
+<span class="n">PRINT</span> <span class="s2">&quot;ผลรวมคือ:&quot;</span><span class="p">,</span> <span class="n">total_sum</span> <span class="n">END</span> <span class="n">FUNCTION</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>ตัวอย่างที่ 3: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FUNCTION</span> <span class="n">sum_from_1_to_10</span><span class="p">()</span>
+<span class="n">DECLARE</span> <span class="n">total_sum</span> <span class="n">AS</span> <span class="n">INTEGER</span>
+<span class="n">SET</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">FOR</span> <span class="n">number</span> <span class="n">FROM</span> <span class="mi">1</span> <span class="n">TO</span> <span class="mi">10</span>
+    <span class="n">DO</span> <span class="n">total_sum</span> <span class="o">=</span> <span class="n">total_sum</span> <span class="o">+</span> <span class="n">number</span>
+<span class="n">END</span> <span class="n">FOR</span>
+<span class="n">PRINT</span> <span class="s2">&quot;ผลรวมของตัวเลขตั้งแต่ 1 ถึง 10 คือ:&quot;</span><span class="p">,</span> <span class="n">total_sum</span> <span class="n">END</span> <span class="n">FUNCTION</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -582,10 +823,35 @@ sub85(right)-&gt;op82
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-solving">การตีโจทย์ปัญหาไปเป็นภาษาคอมพิวเตอร์ (Problem Solving)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-example">ตัวอย่างผังงาน (Flowchart Example)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ดหรือรหัสเทียม (Pseudo Code)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-example">ตัวอย่างซูโดโค้ด (Pseudo Code Example)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">อัลกอริธึม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ความเชื่อมโยงอัลกอริธึม กับการสร้างผังงาน และรหัสเทียม</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart">ผังงาน (Flowchart)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">สัญลักษณ์หลัก ๆ ที่ใช้ในผังงาน</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flowcharts">การทำความเข้าใจ Flowcharts: รูปแบบต่าง ๆ และตัวอย่าง</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sequence-process">1. แบบลำดับ (Sequence Process)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ตัวอย่าง: คำนวณผลรวมของตัวเลข</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flowchart-python-code">การแสดงผล Flowchart จาก Python Code</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map-int">คำอธิบายเกี่ยวกับ <code class="docutils literal notranslate"><span class="pre">map(int,</span> <span class="pre">...)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selection">2. แบบทางเลือก (Selection)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ตัวอย่าง: การตรวจสอบว่าเลขที่ใส่เข้ามาเป็นเลขคู่หรือเลขคี่</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration-statements">3. แบบทำซ้ำ (Iteration Statements)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ตัวอย่าง: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code">ซูโดโค้ด (Pseudo Code)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ตัวอย่างที่ 1: ตรวจสอบว่าเลขคู่หรือเลขคี่</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ตัวอย่างที่ 2: คำนวณผลรวมของตัวเลข</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ตัวอย่างที่ 3: คำนวณผลรวมของตัวเลขตั้งแต่ 1 ถึง 10</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
