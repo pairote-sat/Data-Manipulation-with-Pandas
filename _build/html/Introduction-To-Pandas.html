@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
@@ -60,8 +60,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Introduction-To-Pandas';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reading Data using Pandas" href="Reading-Data-Using-Pandas.html" />
-    <link rel="prev" title="Welcome to Data Manipulation with Pandas" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -175,29 +175,12 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to Data Manipulation with Pandas
+                    บทนำสู่การเขียนโปรแกรมคอมพิวเตอร์
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Reading-Data-Using-Pandas.html">Reading Data using Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Basic-Attributes-and-Methods.html">Basic Attributes and Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Exercise-1.html">Exercise 1: Basic Attributes and Methods using gapminder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Solutions-Exercise-1.html">Solutions for Exercise 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Row-and-Column-Selection.html">Slicing and Selecting in DataFrames in Pandas”</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Exercise-2.html">Exercise 2: Slicing and Selecting in DataFrames in Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Creating-or-Removing-Columns-from-DataFrame.html">Creating or Removing Columns from DataFrame</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Exercise-3.html">Exercise 3: Creating or Removing Columns from DataFrame in Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Data-Reshaping-with-Pandas.html">Data Reshaping with Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Diagnostic-Analytics-Monte-Carlo-Simulation.html"><span style="color: dimgray;"><strong>Diagnostic Analytics: Monte Carlo Simulation</strong></span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rose_Curve.html">Introduction to Monte Carlo Simulation for Estimating Area Inside Rose Petals</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="SRW.html">Simple Random Walk Definition</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.html">Exercise: Diagnostic Analytics, Monte Carlo Simulation and sampling methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Predictive-Analytics-Linear-Regression.html">Predictive Analytics: Linear Regression</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction-to-Programming.html">ขั้นตอนการประมวลผลคำสั่งของคอมพิวเตอร์</a></li>
 </ul>
 
     </div>
@@ -370,7 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -386,6 +371,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Pandas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#welcome-to-data-manipulation-with-pandas">Welcome to Data Manipulation with Pandas</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -397,7 +392,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-pandas">
 <h1>Introduction to Pandas<a class="headerlink" href="#introduction-to-pandas" title="Link to this heading">#</a></h1>
-<hr><p><strong>What is Pandas?</strong></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="welcome-to-data-manipulation-with-pandas">
+<h1>Welcome to Data Manipulation with Pandas<a class="headerlink" href="#welcome-to-data-manipulation-with-pandas" title="Link to this heading">#</a></h1>
+<p>In this series, we will cover the basics of Data Analysis using Python. The lessons will gradually build your skills to develop a strong analytical mindset. This lesson focuses on the essentials of Pandas for processing tabular data. As you progress, you’ll gain the foundation needed to tackle big data challenges.</p>
+<p><strong>What is Pandas?</strong></p>
 <p>Pandas is a powerful tool in Python for data analysis. It helps you work with data in a structured way, making it easier to organize, manipulate, and analyze large amounts of information.</p>
 <p><strong>Why do we need it?</strong></p>
 <p>We need Pandas because it simplifies the process of handling and analyzing data. With Pandas, you can:</p>
@@ -440,30 +439,29 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to Data Manipulation with Pandas</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Reading-Data-Using-Pandas.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Reading Data using Pandas</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Pandas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#welcome-to-data-manipulation-with-pandas">Welcome to Data Manipulation with Pandas</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

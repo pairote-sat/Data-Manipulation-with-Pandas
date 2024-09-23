@@ -4,18 +4,20 @@
 format: jb-book
 root: intro
 chapters:
-- file: Introduction-To-Pandas.ipynb
-- file: Reading-Data-Using-Pandas.ipynb
-- file: Basic-Attributes-and-Methods.ipynb
-- file: Exercise-1.ipynb
-- file: Solutions-Exercise-1.ipynb
-- file: Row-and-Column-Selection.ipynb
-- file: Exercise-2.ipynb
-- file: Creating-or-Removing-Columns-from-DataFrame.ipynb
-- file: Exercise-3.ipynb
-- file: Data-Reshaping-with-Pandas.ipynb
-- file: Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
-- file: Rose_Curve.ipynb
-- file: SRW.ipynb
-- file: Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
-- file: Predictive-Analytics-Linear-Regression.ipynb
+# - file: Introduction-To-Pandas.ipynb
+# - file: Reading-Data-Using-Pandas.ipynb
+# - file: Basic-Attributes-and-Methods.ipynb
+# - file: Exercise-1.ipynb
+# - file: Solutions-Exercise-1.ipynb
+# - file: Row-and-Column-Selection.ipynb
+# - file: Exercise-2.ipynb
+# - file: Creating-or-Removing-Columns-from-DataFrame.ipynb
+# - file: Exercise-3.ipynb
+# - file: Data-Reshaping-with-Pandas.ipynb
+# - file: Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
+# - file: Rose_Curve.ipynb
+# - file: SRW.ipynb
+# - file: Exercise-Diagnostic-Analytics-Monte-Carlo-Simulation.ipynb
+# - file: Predictive-Analytics-Linear-Regression.ipynb
+- file: Introduction-to-Programming.ipynb
+- file: Programming-Procedure.ipynb
